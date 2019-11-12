@@ -55,7 +55,7 @@
 
     <v-system-bar>
       <v-footer app color="primary" class="text3--text">
-        <local-store-info></local-store-info>
+        <git-store-info></git-store-info>
         <v-spacer />
         <span>&copy; 2019</span>
       </v-footer>
@@ -67,7 +67,7 @@
 
 <script>
 
-import LocalStoreInfo from './components/utils/LocalStoreInfo'
+import GitStoreInfo from './components/utils/GitStoreInfo'
 
 export default {
   props: {
@@ -84,14 +84,15 @@ export default {
       this.$router.push('/');
   },
   components : {
-    LocalStoreInfo,
+    GitStoreInfo,
   }
 };
 </script>
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Nunito+Sans|Roboto+Slab&display=swap');
-body .v-application{
+body .v-application,
+body {
   font-family: 'Nunito Sans', serif;
   font-size: 80%;
   letter-spacing: .05em;
@@ -115,4 +116,5 @@ body .v-application code {
     color: #cdc7bb;
     padding:10px;
 }
+
 </style>

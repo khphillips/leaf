@@ -3,6 +3,7 @@
     <v-btn @click="addItem">Increment</v-btn>
     <div v-for="(item, ix) in items" :key="item.id">
       {{ item.id }} - {{ ix }} - <editable-text-field class="edit" @input="saveItem(item)" v-model="item.email"></editable-text-field><v-icon @click="removeItem(item.id)" small right>fas fa-times-circle</v-icon></div>
+      {{ $store.state.gitstore }}
     <h1>Hello World</h1>
     <p>name (the same one you use in the package.json) in this field and the filename will be relative to the directory Node Webkit uses to store the rest of the application's data (local storage etc.). It works on Linux, OS X and Windows. Now that you can use require('nw.gui').App.dataPath in Node Webkit to get the path to the data directory for your application, you should not use this option anymore and it will be removed.</p>
     
@@ -34,11 +35,7 @@ import config from '../../config'
 export default {
   name: 'home',
   mounted: function(){
-    this.$store.dispatch('gitstore/setUser', {
-        username : 'keith',
-        email : 'keith@mudstuffing.com',
-        password: 'test123'
-      })
+
   },
   computed: {
     items(){
