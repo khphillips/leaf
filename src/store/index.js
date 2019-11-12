@@ -15,10 +15,7 @@ database.register(Item)
 const store = new Vuex.Store({
   plugins: [
   	VuexORM.install(database),
-  	GitStore.install({
-  		key : 'entities', 
-  		repo : 'gitStoreData'
-  	})
+
   	]
 })
 
