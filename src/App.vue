@@ -16,12 +16,12 @@
 
     <v-navigation-drawer v-model="drawer" width="150px" app class="primary darken-1 text1--text">
       <v-list dense>
-        <v-list-item :to="{ name: 'home', params: { userId: 123 }}">
+        <v-list-item :to="{ name: 'canvas', params: { userId: 123 }}">
           <v-list-item-action>
             <v-icon small>fas fa-home</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Home</v-list-item-title>
+            <v-list-item-title>Canvas</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item to="about">
@@ -38,6 +38,14 @@
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>Open Temporary Drawer</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item @click.stop="addBox">
+          <v-list-item-action>
+            <v-icon small>fas fa-sign-out-alt</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Add</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -68,6 +76,7 @@
 <script>
 
 import GitStoreInfo from './components/utils/GitStoreInfo'
+import LeafBladeModel from '@/models/LeafBlade'
 
 export default {
   props: {
@@ -82,6 +91,17 @@ export default {
   created () {
       this.$vuetify.theme.dark = true;
       this.$router.push('/');
+  },
+  methods : {
+    addBox : function(){
+      console.log("new box")
+      var box = new LeafBladeModel();
+      box.x = Math.floor(Math.random() * 10);
+      box.y = Math.floor(Math.random() * 10);
+      box.z = Math.floor(Math.random() * 10);
+      box.$save();
+      console.log(box)
+    }
   },
   components : {
     GitStoreInfo,

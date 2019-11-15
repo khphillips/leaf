@@ -7,7 +7,7 @@
 
 <script>
 
-import Item from '../models/Item'
+//import Item from '../models/Item'
 
 export default{
 	props:[],
@@ -18,7 +18,7 @@ export default{
 	},
 	computed : {
 		items(){
-			return Item.all();
+			//return Item.all();
 		}
 	},
 	mounted : function(){
@@ -30,7 +30,7 @@ export default{
           email : 'keith@paleosun.com'
         }
       ]
-      Item.insert({ data: item })
+      //Item.insert({ data: item })
 	},
 }
 

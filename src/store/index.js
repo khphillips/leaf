@@ -1,8 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexORM from '@vuex-orm/core'
-import config from '../../config'
-import Item from '../models/Item'
+
+import ObjectModel from '../models/ObjectModel'
+import BoxModel from '../models/Box'
+import BoxModel2 from '../models/Box2'
+import LeafBladeModel from '../models/LeafBlade'
 //import GitStore from 'vuex-gitstore'
 import GitStore from './gitstore/index'
 
@@ -10,7 +13,11 @@ Vue.use(Vuex)
 
 const database = new VuexORM.Database()
 
-database.register(Item)
+database.register(ObjectModel)
+database.register(BoxModel)
+database.register(LeafBladeModel)
+database.register(BoxModel2)
+
 
 const store = new Vuex.Store({
   plugins: [
