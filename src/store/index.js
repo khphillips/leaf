@@ -24,7 +24,8 @@ const store = new Vuex.Store({
   	VuexORM.install(database),
   	GitStore.install({
   		key : 'entities', 
-  		repo : 'leaf'
+  		repo : 'leaf',
+  		commit : false
   	})
   	]
 })

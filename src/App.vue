@@ -77,7 +77,7 @@
 
 import GitStoreInfo from './components/utils/GitStoreInfo'
 import LeafBladeModel from '@/models/LeafBlade'
-
+import BoxModel from '@/models/Box'
 export default {
   props: {
     source: String,
@@ -96,6 +96,12 @@ export default {
     addBox : function(){
       console.log("new box")
       var box = new LeafBladeModel();
+      box.x = Math.floor(Math.random() * 10);
+      box.y = Math.floor(Math.random() * 10);
+      box.z = Math.floor(Math.random() * 10);
+      box.$save();
+      console.log(box)
+      var box = new BoxModel();
       box.x = Math.floor(Math.random() * 10);
       box.y = Math.floor(Math.random() * 10);
       box.z = Math.floor(Math.random() * 10);

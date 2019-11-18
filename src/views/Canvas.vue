@@ -6,7 +6,7 @@
       <v-flex>
         <div id="ThreeDScene">
 
-          <vgl-renderer antialias style="height: 80vh; width:100vw;">
+          <vgl-renderer ref="renderer" antialias style="height: 80vh; width:100vw;">
               <vgl-scene>
                 <vgl-grid-helper></vgl-grid-helper>
                 <vgl-axes-helper></vgl-axes-helper>
@@ -18,8 +18,10 @@
                 <leaf-mesh-standard-material color="#ffffff" :wireframe="true" name="green-wire"></leaf-mesh-standard-material>
 
                 <vgl-group v-for="(i, k) in boxes" :key="k" :position="i.position" :rotation="i.rotation">
-                  <vgl-mesh :geometry="'leafbox_' + k" material="green"></vgl-mesh>   
-                  <vgl-mesh :geometry="'leafbox_' + k" material="green-wire"></vgl-mesh> 
+                  <vgl-group>
+                    <vgl-mesh :geometry="'leafbox_' + k" material="green"></vgl-mesh>   
+                    <vgl-mesh :geometry="'leafbox_' + k" material="green-wire"></vgl-mesh> 
+                  </vgl-group>
                 </vgl-group>
 
                 <vgl-ambient-light color="#ffeecc"></vgl-ambient-light>
@@ -31,7 +33,7 @@
 
         </div>
       </v-flex>
-
+      <v-btn @click="animate = !animate">Animate</v-btn>
     </v-layout>
 </template>
 
@@ -44,27 +46,55 @@ import LeafBoxGeometry from '@/components/Geometry/LeafBoxGeometry';
 import LeafBladeGeometry from '@/components/Geometry/LeafBladeGeometry.vue';
 import LeafMeshStandardMaterial from '@/components/Material/LeafMeshStandardMaterial'
 
+import vglNamespace from 'vue-gl/src/core/vgl-namespace';
+
 export default {
   data: () => ({
-
+    animating : false
   }),
   computed : {
     boxes : function(){
       return BoxModel.all();
     },
     blades : function(){
-      console.log(LeafBladeModel)
       return LeafBladeModel.all();
+    },
+    geometries : function(){
+      if (this.$refs.renderer)
+        return this.$refs.renderer._provided.geometries
+      return []
     }
   },
   mounted : function(){
-    
+    setInterval(this.timeline, 33)
   },
   components: {
     LeafBoxGeometry,
     LeafMeshStandardMaterial,
     LeafBladeGeometry
   },
+  methods: {
+    timeline : function(){
+      if (this.animate){
+        this.boxes[0].x = this.boxes[0].x + .1
+        BoxModel.update({
+          where: 1,
+          data: {
+            x : this.boxes[0].x
+          }
+        })
+      }
+    }
+  },
+  watch : {
+    'boxes' : function(newV){
+      var g = this;
+      console.log(newV);
+      setTimeout(function(){
+      console.log(g.$refs.renderer._provided);
+      }, 1000)
+    }
+  }
 };
 </script>
 

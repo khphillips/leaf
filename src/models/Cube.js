@@ -1,29 +1,29 @@
 // User Model
 
-import ObjModel from './ObjectModel'
-
-export default class Box extends ObjModel {
+export default class Cube {
   // This is the name used as module name of the Vuex Store.
-  static entity = 'box'
+  static entity = 'item'
   // List of all fields (schema) of the post model. `this.attr` is used
   // for the generic field type. The argument is the default value.
-  //static baseEntity = 'object3d'
-
   static fields () {
     return {
-      ...super.fields(),
-      height_segments: this.attr(2),
-      width_segments: this.attr(2),
-      depth_segments: this.attr(2),
-      height: this.attr(1),
+      id: this.increment(),
       width: this.attr(1),
+      height: this.attr(1),
       depth: this.attr(1),
+      x : this.attr(0),
+      y : this.attr(0),
+      z : this.attr(0),
+      rotate_y : this.attr(0),
+      rotate_x : this.attr(0),
+      rotate_z : this.attr(0),
+      material : this.attr('red'),
     }
   }
 
   static state ()  {
     return {
-      persist: false,
+      persist: true,
       //repo: "engagement_label".  //replace with the engagement model for the repo. 
     }
   }
