@@ -19,8 +19,8 @@
 
                 <vgl-group v-for="(i, k) in boxes" :key="k" :position="i.position" :rotation="i.rotation">
                   <vgl-group>
-                    <vgl-mesh :geometry="'leafbox_' + k" material="green"></vgl-mesh>   
-                    <vgl-mesh :geometry="'leafbox_' + k" material="green-wire"></vgl-mesh> 
+                    <vgl-mesh :geometry="'leafblade_' + k" material="green"></vgl-mesh>   
+                    <vgl-mesh :geometry="'leafblade_' + k" material="green-wire"></vgl-mesh> 
                   </vgl-group>
                 </vgl-group>
 
@@ -87,13 +87,7 @@ export default {
     }
   },
   watch : {
-    'boxes' : function(newV){
-      var g = this;
-      console.log(newV);
-      setTimeout(function(){
-      console.log(g.$refs.renderer._provided);
-      }, 1000)
-    }
+
   }
 };
 </script>

@@ -14,8 +14,8 @@ export default {
   props: ['model', 'name'],
   computed: {
     inst() {
-      console.log(model)
-      return new LeafBlade.createLeafBladeGeometry(model, name);
+      var ref = new LeafBlade(this.model, this.name);
+      return ref.createLeafBladeGeometry()
     },
   },
 };

@@ -304,7 +304,7 @@ const geometryFunctions = {
 	},
 
 	createVerticesFromPathArray(paths){
-		console.log('recreating_vertices')
+		//console.log('recreating_vertices')
 		var vertices = [];
 		var v_hash = [];
 		var faces = [];

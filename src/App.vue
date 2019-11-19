@@ -100,13 +100,11 @@ export default {
       box.y = Math.floor(Math.random() * 10);
       box.z = Math.floor(Math.random() * 10);
       box.$save();
-      console.log(box)
       var box = new BoxModel();
       box.x = Math.floor(Math.random() * 10);
       box.y = Math.floor(Math.random() * 10);
       box.z = Math.floor(Math.random() * 10);
       box.$save();
-      console.log(box)
     }
   },
   components : {

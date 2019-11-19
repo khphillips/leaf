@@ -1,15 +1,10 @@
 <template>
   <div>
-    <vgl-box-geometry v-for="(i, k) in geometry"
+    <leaf-blade-geometry v-for="(i, k) in geometry"
       :key="k"
       :name="name + '_' + k"
-      :width="i.width" 
-      :height="i.height" 
-      :depth="i.depth" 
-      :width-segments="i.width_segments" 
-      :height-segments="i.height_segments" 
-      :depth-segments="i.depth_segments"  
-    ></vgl-box-geometry>
+      :model="i"
+    ></leaf-blade-geometry>
   </div>
 </template>
 <script>
@@ -32,10 +27,9 @@ export default {
     },
     mounted: function() {
       this.geometry = this.value;
-      console.log(this.name)
     },
     components: {
-
+      LeafBladeGeometry
     },
 };
 </script>
