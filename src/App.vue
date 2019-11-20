@@ -51,7 +51,9 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-navigation-drawer v-model="left" fixed temporary class="primary darken-2"/>
+    <v-navigation-drawer v-model="left" fixed temporary class="primary darken-2">
+      <camera-controls></camera-controls>
+    </v-navigation-drawer>
 
     <v-content>
       <v-container class="fill-height" fluid>
@@ -78,6 +80,8 @@
 import GitStoreInfo from './components/utils/GitStoreInfo'
 import LeafBladeModel from '@/models/LeafBlade'
 import BoxModel from '@/models/Box'
+import CameraControls from '@/components/CameraControls'
+
 export default {
   props: {
     source: String,
@@ -87,6 +91,14 @@ export default {
     drawerRight: null,
     right: false,
     left: false,
+    camera : {
+      target_x : 0,
+      target_y : 0,
+      target_z : 0,
+      x : 0,
+      y : 0,
+      z : 0,
+    }
   }),
   created () {
       this.$vuetify.theme.dark = true;
@@ -109,6 +121,7 @@ export default {
   },
   components : {
     GitStoreInfo,
+    CameraControls
   }
 };
 </script>

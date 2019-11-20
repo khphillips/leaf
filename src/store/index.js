@@ -4,7 +4,7 @@ import VuexORM from '@vuex-orm/core'
 
 import ObjectModel from '../models/ObjectModel'
 import BoxModel from '../models/Box'
-import BoxModel2 from '../models/Box2'
+import Camera from '../models/Camera'
 import LeafBladeModel from '../models/LeafBlade'
 //import GitStore from 'vuex-gitstore'
 import GitStore from './gitstore/index'
@@ -16,7 +16,7 @@ const database = new VuexORM.Database()
 database.register(ObjectModel)
 database.register(BoxModel)
 database.register(LeafBladeModel)
-database.register(BoxModel2)
+database.register(Camera)
 
 
 const store = new Vuex.Store({

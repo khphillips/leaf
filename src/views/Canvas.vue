@@ -17,18 +17,25 @@
                 <leaf-mesh-standard-material name="green"></leaf-mesh-standard-material>
                 <leaf-mesh-standard-material color="#ffffff" :wireframe="true" name="green-wire"></leaf-mesh-standard-material>
 
-                <vgl-group v-for="(i, k) in boxes" :key="k" :position="i.position" :rotation="i.rotation">
-                  <vgl-group>
+                <vgl-group>
+                  <vgl-group v-for="(i, k) in blades" :key="k" :position="i.position" :rotation="i.rotation">
                     <vgl-mesh :geometry="'leafblade_' + k" material="green"></vgl-mesh>   
                     <vgl-mesh :geometry="'leafblade_' + k" material="green-wire"></vgl-mesh> 
                   </vgl-group>
                 </vgl-group>
 
+                <vgl-group>
+                  <vgl-group v-for="(i, k) in boxes" :key="k" :position="i.position" :rotation="i.rotation">
+                    <vgl-mesh :geometry="'leafbox_' + k" material="green"></vgl-mesh>   
+                    <vgl-mesh :geometry="'leafbox_' + k" material="green-wire"></vgl-mesh> 
+                  </vgl-group>
+                </vgl-group>
+
                 <vgl-ambient-light color="#ffeecc"></vgl-ambient-light>
                 <vgl-directional-light position="0 25 25"></vgl-directional-light>
-
+                
               </vgl-scene>
-            <vgl-perspective-camera orbit-target="0 0 0" zoom="1" position="-3 10 20;"></vgl-perspective-camera>
+              <vgl-perspective-camera :name="camera.name" ref="camera" :orbit-target="camera.orbitTarget" :zoom="camera.zoom" :position="camera.position"></vgl-perspective-camera>
           </vgl-renderer>
 
         </div>
@@ -40,9 +47,11 @@
 <script>
 
 import BoxModel from '@/models/Box';
+import CameraModel from '@/models/Camera';
 import LeafBladeModel from '@/models/LeafBlade';
 
 import LeafBoxGeometry from '@/components/Geometry/LeafBoxGeometry';
+import Camera from '@/components/Geometry/Camera';
 import LeafBladeGeometry from '@/components/Geometry/LeafBladeGeometry.vue';
 import LeafMeshStandardMaterial from '@/components/Material/LeafMeshStandardMaterial'
 
@@ -53,6 +62,9 @@ export default {
     animating : false
   }),
   computed : {
+    camera : function(){
+      return CameraModel.query().where('id', 1).first();
+    },
     boxes : function(){
       return BoxModel.all();
     },
@@ -71,7 +83,8 @@ export default {
   components: {
     LeafBoxGeometry,
     LeafMeshStandardMaterial,
-    LeafBladeGeometry
+    LeafBladeGeometry,
+    Camera
   },
   methods: {
     timeline : function(){

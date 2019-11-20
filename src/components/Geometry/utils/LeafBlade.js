@@ -8,7 +8,7 @@ import LeafBladeModel from '@/models/LeafBlade'
 export default class LeafBlade{
 
   constructor(cfg, name){
-    console.log("l", new LeafBladeModel.state())
+    //console.log("l", new LeafBladeModel.state())
     this.cfg = cfg
     this.cfg_indiv = cfg;
     this.name = name
@@ -23,7 +23,7 @@ export default class LeafBlade{
     this.distribution_pts = this._distribution_pts();
     this.length_pts = this._length_pts()
     this.angle_pts = this._angle_pts();
-    console.log("num veins", this.cfg)
+    //console.log("num veins", this.cfg)
     this.makeVeins(this.cfg.num_veins);
     //console.log(this.veins)
   }
