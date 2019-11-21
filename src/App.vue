@@ -52,7 +52,7 @@
     </v-navigation-drawer>
 
     <v-navigation-drawer v-model="left" fixed temporary class="primary darken-2">
-      <camera-controls></camera-controls>
+      <camera-controls :value="1"></camera-controls>
     </v-navigation-drawer>
 
     <v-content>

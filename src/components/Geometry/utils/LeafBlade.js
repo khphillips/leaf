@@ -8,7 +8,7 @@ import LeafBladeModel from '@/models/LeafBlade'
 export default class LeafBlade{
 
   constructor(cfg, name){
-    //console.log("l", new LeafBladeModel.state())
+    console.log(name);
     this.cfg = cfg
     this.cfg_indiv = cfg;
     this.name = name
@@ -23,7 +23,7 @@ export default class LeafBlade{
     this.distribution_pts = this._distribution_pts();
     this.length_pts = this._length_pts()
     this.angle_pts = this._angle_pts();
-    //console.log("num veins", this.cfg)
+    console.log("cfg", this.cfg)
     this.makeVeins(this.cfg.num_veins);
     //console.log(this.veins)
   }
@@ -62,6 +62,7 @@ export default class LeafBlade{
       return this.angle_pts[i+1].y * 180
   }
   findLength(i){
+      console.log(this.length_pts);
       return this.length_pts[i+1].y * this.cfg.vein_length
   }
     //this is the veins in between the config veins

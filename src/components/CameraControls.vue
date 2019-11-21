@@ -1,9 +1,15 @@
 <template>
   <div>
-    <v-text-field label="Target X" v-model="camera.target_x"></v-text-field>
-    <v-text-field label="Target Y" v-model="camera.target_y"></v-text-field>
-    <v-text-field label="Target Z" v-model="camera.target_z"></v-text-field>
-    {{ camera }}
+    <div v-if="camera">
+      <h4>Target</h4>
+      <v-slider :max="100" :min="-100" label="Target X" v-on:change="updateCamera" v-model="camera.target_x"></v-slider>
+      <v-slider :max="100" :min="-100" label="Target Y" v-on:change="updateCamera" v-model="camera.target_y"></v-slider>
+      <v-slider :max="100" :min="-100" label="Target Z" v-on:change="updateCamera" v-model="camera.target_z"></v-slider>
+      <h4>Position</h4>
+      <v-slider :max="100" :min="-100" label="X" v-on:change="updateCamera" v-model="camera.x"></v-slider>
+      <v-slider :max="100" :min="-100" label="Y" v-on:change="updateCamera" v-model="camera.y"></v-slider>
+      <v-slider :max="100" :min="-100" label="Z" v-on:change="updateCamera" v-model="camera.z"></v-slider>
+    </div>
   </div>
 </template>
 
@@ -15,41 +21,22 @@
       props: ['value'],
       data : function() {
         return { 
-          camera : {
-            "x": 1,
-            "y": 1,
-            "z": 10,
-            "rotate_x": 0,
-            "rotate_y": 0,
-            "rotate_z": 0,
-            "target_x": 0,
-            "target_y": 5,
-            "target_z": 0,
-            "zoom": 1,
-            "fov": 25
-          }
         }
       },
       mounted : function(){
-        this.camera = CameraModel.query().where('id', 1).first();
-        console.log('camera', this.camera)
+
       },
       computed : {
-
+        camera : function(){
+          return CameraModel.query().where('id', this.value).first();
+        }
       },
       methods: {
-
-      },
-      watchers : {
-        'camera' : {
-          deep : true,
-          handler : function(){
-            console.log(newV)
-            CameraModel.update({
-              where : 1,
-              data : camera
+        updateCamera : function(){
+          CameraModel.update({
+              where : this.value,
+              data : this.camera
             })
-          }
         }
       }
   }
