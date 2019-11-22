@@ -53,6 +53,7 @@
 
     <v-navigation-drawer v-model="left" fixed temporary class="primary darken-2">
       <camera-controls :value="1"></camera-controls>
+      <blade-controls></blade-controls>
     </v-navigation-drawer>
 
     <v-content>
@@ -80,7 +81,9 @@
 import GitStoreInfo from './components/utils/GitStoreInfo'
 import LeafBladeModel from '@/models/LeafBlade'
 import BoxModel from '@/models/Box'
+import CameraModel from '@/models/Camera'
 import CameraControls from '@/components/CameraControls'
+import BladeControls from '@/components/BladeControls'
 
 export default {
   props: {
@@ -106,7 +109,6 @@ export default {
   },
   methods : {
     addBox : function(){
-      console.log("new box")
       var box = new LeafBladeModel();
       box.x = Math.floor(Math.random() * 10);
       box.y = Math.floor(Math.random() * 10);
@@ -117,11 +119,17 @@ export default {
       box.y = Math.floor(Math.random() * 10);
       box.z = Math.floor(Math.random() * 10);
       box.$save();
+      var box = new CameraModel();
+      box.x = Math.floor(Math.random() * 10);
+      box.y = Math.floor(Math.random() * 10);
+      box.z = Math.floor(Math.random() * 10);
+      box.$save();
     }
   },
   components : {
     GitStoreInfo,
-    CameraControls
+    CameraControls,
+    BladeControls
   }
 };
 </script>

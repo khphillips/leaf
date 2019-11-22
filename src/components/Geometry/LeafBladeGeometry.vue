@@ -1,9 +1,8 @@
 <template>
   <div>
-    <leaf-blade-geometry v-for="(i, k) in geometry"
-      :key="k"
-      :name="name + '_' + k"
-      :model="i"
+    <leaf-blade-geometry
+      :name="name"
+      :model="geometry"
     ></leaf-blade-geometry>
   </div>
 </template>
@@ -26,6 +25,7 @@ export default {
       },
     },
     mounted: function() {
+      console.log(this.value)
       this.geometry = this.value;
     },
     components: {

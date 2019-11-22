@@ -25,7 +25,7 @@ const store = new Vuex.Store({
   	GitStore.install({
   		key : 'entities', 
   		repo : 'leaf',
-  		commit : false
+  		commit : true
   	})
   	]
 })

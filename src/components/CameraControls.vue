@@ -32,7 +32,7 @@
         }
       },
       methods: {
-        updateCamera : function(){
+        'updateCamera' : function(){
           CameraModel.update({
               where : this.value,
               data : this.camera
