@@ -12,7 +12,7 @@
                 <vgl-axes-helper></vgl-axes-helper>
                 
                 <leaf-box-geometry v-model="boxes" name="leafbox"></leaf-box-geometry>
-                <leaf-blade-geometry name="leafblade" :model="blades[0]"></leaf-blade-geometry>
+                <leaf-blade-geometry name="leafblade" :model="blade_ref"></leaf-blade-geometry>
                 
                 <leaf-mesh-standard-material name="green"></leaf-mesh-standard-material>
                 <leaf-mesh-standard-material color="#ffffff" :wireframe="true" name="green-wire"></leaf-mesh-standard-material>
@@ -20,6 +20,7 @@
                 <vgl-group>
                   <vgl-group v-for="(i, k) in blades" :key="k" :position="i.position" :rotation="i.rotation">
                     <vgl-mesh geometry="leafblade" material="green"></vgl-mesh>   
+                    <vgl-mesh geometry="leafblade" material="green-wire"></vgl-mesh>   
                   </vgl-group>
                 </vgl-group>
 
@@ -52,12 +53,13 @@ import LeafBoxGeometry from '@/components/Geometry/LeafBoxGeometry';
 import Camera from '@/components/Geometry/Camera';
 import LeafBladeGeometry from '@/components/Geometry/vue-gl/LeafBladeGeometry';
 import LeafMeshStandardMaterial from '@/components/Material/LeafMeshStandardMaterial'
+import * as THREE from 'three';
 
 import vglNamespace from 'vue-gl/src/core/vgl-namespace';
 
 export default {
   data: () => ({
-    animating : false
+    animating : false,
   }),
   computed : {
     camera : function(){
@@ -69,10 +71,8 @@ export default {
     blades : function(){
       return LeafBladeModel.all();
     },
-    geometries : function(){
-      if (this.$refs.renderer)
-        return this.$refs.renderer._provided.geometries
-      return []
+    blade_ref : function(){
+      return this.blades[0]
     }
   },
   mounted : function(){
@@ -98,7 +98,10 @@ export default {
     }
   },
   watch : {
+    'blade_ref' : function(newV){
+      console.log('blade updated')
 
+    }
   }
 };
 </script>

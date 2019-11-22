@@ -18,7 +18,7 @@ export default class LeafBlade{
     this.bones =[]
     this.veins = [];
     this.main_vein = {}
-    this.resolution = this.cfg.length * 10
+    this.resolution = this.cfg.length * 1
     this.distribution_pts = this._distribution_pts();
     this.length_pts = this._length_pts()
     this.angle_pts = this._angle_pts();
@@ -30,16 +30,16 @@ export default class LeafBlade{
     //sets the configuration for each vein 
     // used by the dom template above to pass the values to the vein object. 
   _distribution_pts(){
-    var control_points = g.getRampPoints(this.cfg.vein_distribution_curve_x1, this.cfg.vein_distribution_curve_y1, this.cfg.vein_distribution_curve_x2, this.cfg.vein_distribution_curve_y2, false, this.cfg.vein_distribution_curve_min, this.cfg.vein_distribution_curve_max);
+    var control_points = g.getRampPoints(parseFloat(this.cfg.vein_distribution_curve_x1), parseFloat(this.cfg.vein_distribution_curve_y1), parseFloat(this.cfg.vein_distribution_curve_x2), parseFloat(this.cfg.vein_distribution_curve_y2), false, parseFloat(this.cfg.vein_distribution_curve_min), parseFloat(this.cfg.vein_distribution_curve_max));
      return g.createEasePoints(0, 0, 1, 1, control_points, this.cfg.num_veins + 1)
   }
   _length_pts(){
-      var control_points = g.getRampPoints(this.cfg.vein_length_curve_x1, this.cfg.vein_length_curve_y1, this.cfg.vein_length_curve_x2, this.cfg.vein_length_curve_y2, true, this.cfg.vein_length_curve_min, this.cfg.vein_length_curve_max, this.cfg.vein_length_curve_repeat);
+      var control_points = g.getRampPoints(parseFloat(this.cfg.vein_length_curve_x1), parseFloat(this.cfg.vein_length_curve_y1), parseFloat(this.cfg.vein_length_curve_x2), parseFloat(this.cfg.vein_length_curve_y2), true, parseFloat(this.cfg.vein_length_curve_min), parseFloat(this.cfg.vein_length_curve_max), parseFloat(this.cfg.vein_length_curve_repeat));
       //repeat the length curve if config says so... creates undulations on leaf profile. 
       return g.createEasePoints(0, 0, 1, 1, control_points, this.cfg.num_veins + 1)
   }
   _angle_pts(){
-       var control_points = g.getRampPoints(this.cfg.vein_angle_curve_x1, this.cfg.vein_angle_curve_y1, this.cfg.vein_angle_curve_x2, this.cfg.vein_angle_curve_y2, false, this.cfg.vein_angle_curve_min, this.cfg.vein_angle_curve_max, 1); 
+       var control_points = g.getRampPoints(parseFloat(this.cfg.vein_angle_curve_x1), parseFloat(this.cfg.vein_angle_curve_y1), parseFloat(this.cfg.vein_angle_curve_x2), parseFloat(this.cfg.vein_angle_curve_y2), false, parseFloat(this.cfg.vein_angle_curve_min), parseFloat(this.cfg.vein_angle_curve_max), 1); 
       return g.createEasePoints(0, 0, 1, 1, control_points, this.cfg.num_veins + 1).reverse()
   }
 
@@ -60,7 +60,7 @@ export default class LeafBlade{
       return this.angle_pts[i+1].y * 180
   }
   findLength(i){
-      console.log('test', this.length_pts);
+      console.log('findLength', this.length_pts[i+1].y, this.cfg.vein_length);
       return this.length_pts[i+1].y * this.cfg.vein_length
   }
     //this is the veins in between the config veins
@@ -124,13 +124,14 @@ export default class LeafBlade{
         }
         veins.push(vein_ease)
       }
-      //console.log(veins)
+      //console.log('veins', veins)
       return veins;
     }
 
     makeVeins(num){
+      console.log('num', num)
       this.veins = [];
-      for (var i = 0; i < num; i++){
+      for (var i = 0; i <= num; i++){
         this.veins.push(this.makeVein(i));
       }
     }

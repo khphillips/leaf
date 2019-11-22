@@ -1,5 +1,6 @@
 import LeafBlade from '../utils/LeafBlade';
 import VglGeometry from 'vue-gl/src/core/vgl-geometry';
+import * as THREE from 'three';
 
 /**
  * This is the quadrilateral primitive geometry component,
@@ -62,8 +63,6 @@ export default {
   },
   computed: {
     inst() {
-    	console.log(this.model)
-
     	var r = new LeafBlade(
 	      	this.model, this.name
 	      ).createLeafBladeGeometry()
@@ -71,9 +70,4 @@ export default {
       return r
     },
   },
-  watch : {
-  	'model': function(newV){
-  		console.log('blade model updated')
-  	}
-  }
 };
