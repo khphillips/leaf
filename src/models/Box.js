@@ -23,7 +23,7 @@ export default class Box extends ObjModel {
 
   static state ()  {
     return {
-      persist: true,
+      persist: false,
       //repo: "engagement_label".  //replace with the engagement model for the repo. 
     }
   }

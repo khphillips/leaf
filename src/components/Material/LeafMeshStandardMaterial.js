@@ -19,10 +19,10 @@ export default {
     /** CSS style color of the material. */
     color: { type: string, default: '#00dd99' },
     /** The color map of the material. */
-    map: string,
+    //map: string,
     skinning : { type: boolean, default: true },
     emissive : { type: string, default: '#000000' },
-    side : { type: number, default: DoubleSide },
+    side : { type: number, default: 0 },
     flatShading : { type: boolean, default: false },
     dithering : { type: boolean, default: true },
     roughness : { type: number, default: .455 },
@@ -42,7 +42,6 @@ export default {
         inst.color.setStyle(this.color); 
         inst.emissive.setStyle(this.emissive); 
         inst.setValues({
-          map : this.map,
           skinning : this.skinning,
           side : this.side,
           flatShading : this.flatShading,
